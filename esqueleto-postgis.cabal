@@ -8,6 +8,6 @@ library
   ghc-options:         -O2 -Wall
   default-language:    Haskell2010
   build-depends:       base >=4.9.0 && <4.10
-                     , esqueleto ==2.5.3
+                     , esqueleto >=2.5.3 && <2.7
                      , persistent-postgis ==0.0.*
   exposed-modules:     Database.Esqueleto.Postgis.Geography

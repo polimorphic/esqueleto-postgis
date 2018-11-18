@@ -4,20 +4,10 @@ module Database.Esqueleto.Postgis.Geography (intersects) where
 
 import Database.Esqueleto (Esqueleto, SqlBackend, SqlExpr, SqlQuery, Value)
 import Database.Esqueleto.Internal.Sql (unsafeSqlFunction)
-import Database.Persist.Postgis.Geography
-    ( GeographyDB, GeometryCollectionDB, LineStringDB, MultiLineStringDB
-    , MultiPointDB, MultiPolygonDB, PointDB, PolygonDB
-    )
+import Database.Persist.Postgis.Geography (Geography)
 
 class IsGeography g
-instance IsGeography GeographyDB
-instance IsGeography GeometryCollectionDB
-instance IsGeography LineStringDB
-instance IsGeography MultiLineStringDB
-instance IsGeography MultiPointDB
-instance IsGeography MultiPolygonDB
-instance IsGeography PointDB
-instance IsGeography PolygonDB
+instance IsGeography (Geography a)
 instance IsGeography a => IsGeography (Maybe a)
 
 class Esqueleto query expr backend => EsqueletoGeography query expr backend where

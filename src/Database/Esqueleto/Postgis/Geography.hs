@@ -1,13 +1,16 @@
-{-# LANGUAGE MultiParamTypeClasses, OverloadedStrings #-}
+{-# LANGUAGE FlexibleInstances, MultiParamTypeClasses, OverloadedStrings #-}
 
 module Database.Esqueleto.Postgis.Geography (contains, intersects) where
 
 import Database.Esqueleto (Esqueleto, SqlBackend, SqlExpr, SqlQuery, Value)
 import Database.Esqueleto.Internal.Sql (unsafeSqlFunction)
+import Data.Geometry.Geos.Types (Some)
 import Database.Persist.Postgis.Geography (Geography)
+
 
 class IsGeography g
 instance IsGeography (Geography a)
+instance IsGeography (Some Geography)
 instance IsGeography a => IsGeography (Maybe a)
 
 class Esqueleto query expr backend => EsqueletoGeography query expr backend where

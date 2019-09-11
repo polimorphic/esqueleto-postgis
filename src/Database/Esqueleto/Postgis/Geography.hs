@@ -4,7 +4,7 @@ module Database.Esqueleto.Postgis.Geography (intersects) where
 
 import Database.Esqueleto (Esqueleto, SqlBackend, SqlExpr, SqlQuery, Value)
 import Database.Esqueleto.Internal.Sql (unsafeSqlFunction)
-import Data.Geometry.Geos.Types (Some)
+import Data.Geometry.Geos.Geometry (Some)
 import Database.Persist.Postgis.Geography (Geography)
 
 

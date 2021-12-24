@@ -1,6 +1,6 @@
 {-# LANGUAGE FlexibleInstances, MultiParamTypeClasses, OverloadedStrings #-}
 
-module Database.Esqueleto.Postgis.Geography (intersects) where
+module Database.Esqueleto.Postgis.Geography (intersects, intersectsMaybe) where
 
 import Database.Esqueleto (SqlExpr, Value)
 import Database.Esqueleto.Internal.Sql (unsafeSqlFunction)
@@ -17,3 +17,8 @@ intersects :: (IsGeography a, IsGeography b)
 intersects a b = unsafeSqlFunction "ST_Intersects" (a, b)
 infixl 7 `intersects`
 
+intersectsMaybe :: (IsGeography a, IsGeography b)
+                => SqlExpr (Maybe (Value a)) -> SqlExpr (Maybe (Value b))
+                -> SqlExpr (Maybe (Value Bool))
+intersectsMaybe a b = unsafeSqlFunction "ST_Intersects" (a, b)
+infixl 7 `intersects`
